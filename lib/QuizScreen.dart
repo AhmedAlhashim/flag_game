@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:flag_game/ResultScreen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,8 @@ class _QuizScreenState extends State<QuizScreen> {
   ];
 
   int random = Random().nextInt(3);
-
+int correctAnswer = 0;
+int wrongAnswer = 0;
   @override
   void initState() {
     super.initState();
@@ -68,15 +70,30 @@ class _QuizScreenState extends State<QuizScreen> {
                 FlagButton(
                   name: countries[i],
                   onPressed: () {
-                    if(i==random){
-                    Fluttertoast.showToast(msg: "Correct Answer");}else{
-                      Fluttertoast.showToast(msg: "Wrong Answer");}
-
+                    if (i == random) {
+                      Fluttertoast.showToast(
+                          msg: "Correct Answer", backgroundColor: Colors.green);
+                      correctAnswer++;
+                    } else {
+                      Fluttertoast.showToast(
+                          msg: "Wrong Answer", backgroundColor: Colors.red);
+                      wrongAnswer++;
+                    }
 
                     countries.shuffle();
                     updateRandom();
                   },
                 ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ResultScreen(correctAnswer: correctAnswer,wrongAnswer: wrongAnswer,)),
+                  );
+                },
+                child: Text(
+                    'Show Result'), // Replace 'Text' with any widget you want as the button child.
+              )
             ],
           ),
         ),
