@@ -68,7 +68,11 @@ class _QuizScreenState extends State<QuizScreen> {
                 FlagButton(
                   name: countries[i],
                   onPressed: () {
-                    Fluttertoast.showToast(msg: "msg");
+                    if(i==random){
+                    Fluttertoast.showToast(msg: "Correct Answer");}else{
+                      Fluttertoast.showToast(msg: "Wrong Answer");}
+
+
                     countries.shuffle();
                     updateRandom();
                   },
