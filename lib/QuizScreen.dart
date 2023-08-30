@@ -84,13 +84,17 @@ int wrongAnswer = 0;
                     updateRandom();
                   },
                 ),
+              SizedBox(height: 40),
               ElevatedButton(
+
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => ResultScreen(correctAnswer: correctAnswer,wrongAnswer: wrongAnswer,)),
                   );
-                },
+
+                  },
+
                 child: Text(
                     'Show Result'), // Replace 'Text' with any widget you want as the button child.
               )
